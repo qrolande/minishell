@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/03 21:53:24 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:27:28 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,20 @@ typedef struct s_shell
 	t_structenv			*env_mass;
 	char				**full_path;
 	char				**cmd;
+	char				**temp;
 	char				**splitted_cmd;
-	char				**args;
 	char				*line;
+	int					**fd;
+	int					i;
 	int					num_cmd;
+	int					num_pipe;
+	int					if_pipe;
 	struct s_shell		*next;
 }				t_shell;
 
 void	env_parser(t_shell *shell, char	**env);
-void	if_space(t_shell *shell, int i);
-void	prepare_cmd(t_shell *shell, int i);
+char	*if_space(char *str, t_shell *shell);
+char	*prepare_cmd(char *str, t_shell *shell);
 void	begin(t_shell *shell);
 
 #endif

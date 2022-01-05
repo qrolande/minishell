@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 17:15:13 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/03 21:44:11 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:45:08 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,32 @@ static char	pipe_syntax(char *line, int i)
 {
 	while (line[i] == ' ')
 		i++;
-	if (line[i] == ';')
+	if (line[i] == ';' || (line[i] == ';' && line[i + 1] == ';'))
 		return (';');
 	if (line[i] == '|')
 		return ('|');
 	return ('0');
 }
 
-void	prepare_cmd(t_shell *shell, int i)
+static void	syntax(char *str)
 {
-	if (quotes_syntax(shell->splitted_cmd[i]) == -1)
+	if (quotes_syntax(str) == -1)
 	{
 		printf("error: unclosed quotes\n");
 		exit(EXIT_FAILURE);
 	}
-	if (pipe_syntax(shell->splitted_cmd[i], 0) != '0')
+	if (pipe_syntax(str, 0) != '0')
 	{
 		printf("syntax error near unexpected token '%c'\n", \
-			pipe_syntax(shell->splitted_cmd[i], 0));
+			pipe_syntax(str, 0));
 		exit(EXIT_FAILURE);
-	}
-	if_space(shell, i);
+	}	
+}
+
+char	*prepare_cmd(char *str, t_shell *shell)
+{
+	shell->i = 0;
+	syntax(str);
+	str = if_space(str, shell);
+	return (str);
 }

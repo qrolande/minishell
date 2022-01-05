@@ -30,21 +30,21 @@ CFLAGS		= -Wall -Wextra -Werror
 INCLUDES	= libft.h
 
 %.o : %.c	$(INCLUDES)
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${INCLUDES}
+			@${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${INCLUDES}
 
 ${NAME}:	${OBJS}
-			ar rcs ${NAME} $?
+			@ar rcs ${NAME} $?
 
 bonus:		${OBJSBONUS} ${OBJS}
-			ar rcs ${NAME} $?
+			@ar rcs ${NAME} $?
 
 all:		${NAME}
 
 clean:		
-			${RM} ${OBJS} ${OBJSBONUS}
+			@${RM} ${OBJS} ${OBJSBONUS}
 
 fclean:		clean
-			${RM} ${NAME}
+			@${RM} ${NAME}
 
 re:			fclean all
 

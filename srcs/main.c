@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:29:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/03 20:33:58 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:30:10 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	init(t_shell *shell, char **av, char **env)
 	shell->cmd = NULL;
 	shell->line = NULL;
 	shell->env_mass = NULL;
+	shell->if_pipe = 0;
+	shell->num_pipe = 0;
 	env_parser(shell, env);
 }
 
@@ -32,6 +34,8 @@ int	main(int ac, char **av, char **env)
 	{
 		shell->line = readline("minishell> ");
 		begin(shell);
+		//printf ("line = %s\n", shell->splitted_cmd[0]);
+		//printf ("line = %s\n", shell->splitted_cmd[1]);
 	}
 	return (0);
 }
