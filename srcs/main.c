@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:29:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/05 17:30:10 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:02:45 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int ac, char **av, char **env)
 		begin(shell);
 		//printf ("line = %s\n", shell->splitted_cmd[0]);
 		//printf ("line = %s\n", shell->splitted_cmd[1]);
+		free(shell->line);
 	}
 	return (0);
 }

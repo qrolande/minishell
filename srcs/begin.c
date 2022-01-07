@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:13:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/05 17:27:46 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/07 18:36:58 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,24 @@ static void	semicolon_check(t_shell *shell)
 	shell->splitted_cmd = ft_split(shell->line, ';');
 }
 
+static int	if_another_minishell(int *i, t_shell *shell)
+{
+	int	pid;
+
+	pid = 0;
+	if (shell->splitted_cmd[*i][0] == '.')
+	{
+		shell->cmd = ft_split(shell->splitted_cmd[*i], ' ');
+		pid = fork();
+		if (pid == 0)
+			execve(shell->cmd[0], shell->cmd, env_constructor(shell, 0, 0));
+		wait(NULL);
+		*i += 1;
+		return (1);
+	}
+	return (0);
+}
+
 void	begin(t_shell *shell)
 {
 	int	i;
@@ -62,14 +80,20 @@ void	begin(t_shell *shell)
 		i = 0;
 		shell->num_cmd = 1;
 		add_history(shell->line);
-		semicolon_check(shell);
-		while (shell->num_cmd)
+		syntax(shell);
+		if (shell->error == 0)
+			semicolon_check(shell);
+		while (shell->num_cmd && shell->error == 0)
 		{
 			shell->splitted_cmd[i] = prepare_cmd(shell->splitted_cmd[i], shell);
 			pipe_work(shell, i);
+			if (if_another_minishell(&i, shell))
+				return ;
+			parser_cmd(shell, shell->splitted_cmd[i], 0, 0);
 			printf ("line = %s\n", shell->splitted_cmd[i]);
 			shell->num_cmd--;
 			i++;
 		}
+		shell->error = 0;
 	}
 }
