@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/10 19:08:58 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/10 22:09:31 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*gap(char *str, int *i);
 char	*slash(char *str, int *i);
 void	begin(t_shell *shell, char **env);
 void	env_parser(t_shell *shell, char	**env);
-void	cmd_executor(char **env, t_shell *shell);
+//void	cmd_executor(char **env, t_shell *shell);
 char	*tilde(char *str, int *i, t_shell *shell);
 char	*dollar(char *str, int *i, t_shell *shell);
 char	*dollar(char *str, int *i, t_shell *shell);
@@ -60,5 +60,10 @@ char	*find_key_value(char *tmp_key, t_shell *shell);
 char	**env_constructor(t_shell *shell, int i, int j);
 void	cmd_parser(t_shell *shell, char *str, int i, int j);
 char	**two_dimension_check(char	**arr, char *str, int *j, int i);
+
+// akatlyn
+
+int		builtin_func(t_shell	*shell);
+void	ft_pwd(void);
 
 #endif
