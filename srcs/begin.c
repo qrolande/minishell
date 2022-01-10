@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:13:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/07 18:36:58 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:08:31 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	if_another_minishell(int *i, t_shell *shell)
 	return (0);
 }
 
-void	begin(t_shell *shell)
+void	begin(t_shell *shell, char **env)
 {
 	int	i;
 
@@ -85,11 +85,13 @@ void	begin(t_shell *shell)
 			semicolon_check(shell);
 		while (shell->num_cmd && shell->error == 0)
 		{
-			shell->splitted_cmd[i] = prepare_cmd(shell->splitted_cmd[i], shell);
+			shell->splitted_cmd[i] = prepare_cmd(shell->splitted_cmd[i]);
 			pipe_work(shell, i);
 			if (if_another_minishell(&i, shell))
 				return ;
-			parser_cmd(shell, shell->splitted_cmd[i], 0, 0);
+			cmd_parser(shell, shell->splitted_cmd[i], -1, 0);
+			cmd_executor(env, shell);
+			printf ("cmd[%d] = %s\n", i, shell->cmd[i]);
 			printf ("line = %s\n", shell->splitted_cmd[i]);
 			shell->num_cmd--;
 			i++;

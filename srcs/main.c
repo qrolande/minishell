@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:29:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/06 14:02:45 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:08:44 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int	main(int ac, char **av, char **env)
 	while (ac)
 	{
 		shell->line = readline("minishell> ");
-		begin(shell);
-		//printf ("line = %s\n", shell->splitted_cmd[0]);
-		//printf ("line = %s\n", shell->splitted_cmd[1]);
+		begin(shell, env);
 		free(shell->line);
 	}
 	return (0);
