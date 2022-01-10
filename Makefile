@@ -6,7 +6,7 @@
 #    By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 15:51:21 by qrolande          #+#    #+#              #
-#    Updated: 2022/01/09 17:14:39 by qrolande         ###   ########.fr        #
+#    Updated: 2022/01/10 21:00:44 by qrolande         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRCS  		=	srcs/main.c \
 				srcs/env_parser.c \
 				srcs/parser_cmd.c \
 				srcs/prepare_cmd.c \
+				srcs/cmd_executor.c \
+				srcs/cleaning_company.c \
 				srcs/two_dimension_check.c
 						
 OBJS		=	${SRCS:.c=.o}

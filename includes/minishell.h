@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/10 19:08:58 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/10 21:00:15 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	syntax(t_shell *shell);
 char	*prepare_cmd(char *str);
 char	*gap(char *str, int *i);
 char	*slash(char *str, int *i);
+void	cleaning_company(t_shell *shell);
 void	begin(t_shell *shell, char **env);
 void	env_parser(t_shell *shell, char	**env);
 void	cmd_executor(char **env, t_shell *shell);
