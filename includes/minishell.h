@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/07 20:12:46 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:08:58 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,20 @@ typedef struct s_shell
 	struct s_shell		*next;
 }				t_shell;
 
-void	env_parser(t_shell *shell, char	**env);
 void	syntax(t_shell *shell);
-char	*prepare_cmd(char *str, t_shell *shell);
-void	begin(t_shell *shell);
-char	**env_constructor(t_shell *shell, int i, int j);
-void	parser_cmd(t_shell *shell, char *str, int i, int j);
+char	*prepare_cmd(char *str);
 char	*gap(char *str, int *i);
+char	*slash(char *str, int *i);
+void	begin(t_shell *shell, char **env);
+void	env_parser(t_shell *shell, char	**env);
+void	cmd_executor(char **env, t_shell *shell);
+char	*tilde(char *str, int *i, t_shell *shell);
+char	*dollar(char *str, int *i, t_shell *shell);
+char	*dollar(char *str, int *i, t_shell *shell);
+char	*double_gap(char *str, int *i, t_shell *shell);
+char	*find_key_value(char *tmp_key, t_shell *shell);
+char	**env_constructor(t_shell *shell, int i, int j);
+void	cmd_parser(t_shell *shell, char *str, int i, int j);
+char	**two_dimension_check(char	**arr, char *str, int *j, int i);
 
 #endif
