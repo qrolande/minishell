@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:39:15 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/10 22:16:41 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/12 21:33:01 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ void	env_parser(t_shell *shell, char	**env)
 	int			i;
 	int			j;
 
-	i = all_env(env);
+	i = 0;
+	while (env[i])
+		i++;
 	while (i-- != 0)
 	{
 		j = key(env[i]);

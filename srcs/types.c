@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:39:29 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/10 18:35:31 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/12 20:28:25 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*double_gap(char *str, int *i, t_shell *shell)
 			str = slash(str, i);
 		if (str[*i] == '$')
 			str = dollar(str, i, shell);
-		if (str[*i] == '\'')
+		if (str[*i] == '\"')
 			break ;
 	}
 	str1 = ft_substr(str, 0, j);
@@ -60,6 +60,7 @@ char	*double_gap(char *str, int *i, t_shell *shell)
 	str1 = ft_strjoin(str1, str3);
 	free(str);
 	*i -= 2;
+	printf("str1 = %s\n", str1);
 	return (str1);
 }
 
@@ -81,17 +82,19 @@ char	*tilde(char *str, int *i, t_shell *shell)
 	char	*str1;
 	char	*str2;
 	int		j;
+	t_structenv	*tmp_env;
 
 	j = *i;
+	tmp_env = shell->env_mass;
 	str1 = ft_substr(str, 0, j);
-	while (ft_strncmp(shell->env_mass->key, \
-			"HOME", ft_strlen(shell->env_mass->key)))
-		shell->env_mass = shell->env_mass->next;
+	while (ft_strncmp(tmp_env->key, \
+			"HOME", ft_strlen(tmp_env->key)))
+		tmp_env = tmp_env->next;
 	str2 = ft_strdup (str + j + 1);
-	str1 = ft_strjoin(str1, shell->env_mass->value);
+	str1 = ft_strjoin(str1, tmp_env->value);
 	str1 = ft_strjoin(str1, str2);
 	free(str);
-	*i += ft_strlen(shell->env_mass->value);
+	*i += ft_strlen(tmp_env->value);
 	return (str1);
 }
 
@@ -105,7 +108,7 @@ char	*dollar(char *str, int *i, t_shell *shell)
 	j = *i;
 	while (str[++(*i)])
 	{
-		if (str[*i] != '_' || !ft_isalnum((str[*i])))
+		if (str[*i] != '_' && !ft_isalnum((str[*i])))
 			break ;
 	}
 	if (*i == j + 1)

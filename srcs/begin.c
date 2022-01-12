@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:13:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/10 22:20:38 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/12 20:13:17 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,15 @@ void	begin(t_shell *shell, char **env)
 			shell->splitted_cmd[i] = prepare_cmd(shell->splitted_cmd[i]);
 			pipe_work(shell, i);
 			if (if_another_minishell(&i, shell))
-				return ;
+			{
+				free(shell->cmd);
+				shell->cmd = NULL;
+				break ;
+			}
 			cmd_parser(shell, shell->splitted_cmd[i], -1, 0);
 			cmd_executor(env, shell);
-			printf ("cmd[%d] = %s\n", i, shell->cmd[i]);
-			printf ("line = %s\n", shell->splitted_cmd[i]);
+			//printf ("cmd[%d] = %s\n", i, shell->cmd[i]);
+			//printf ("line = %s\n", shell->splitted_cmd[i]);
 			cleaning_company(shell);
 			shell->num_cmd--;
 			i++;
