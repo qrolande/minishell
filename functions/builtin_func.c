@@ -6,11 +6,31 @@
 /*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:06:41 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/10 22:26:14 by akatlyn          ###   ########.fr       */
+/*   Updated: 2022/01/12 21:53:54 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minishell.h"
+
+void	ft_echo(t_shell		*shell)
+{
+	int		i;
+	int 	n;
+	
+	i = 1;
+	n = 0;
+	if (!(ft_strcmp(shell->cmd[i], "-n")))
+		n = 1;
+	while (shell->cmd[i])
+	{
+		ft_putstr_fd(shell->cmd[i + n], 1);
+		i++;
+		if (i + n < ft_bigstr_len(shell->cmd))
+			write(1, " ", 1);
+	}
+	if (!n)
+		write(1, "\n", 1);
+}
 
 void	ft_pwd(void)
 {
@@ -27,11 +47,11 @@ void	ft_pwd(void)
 
 int	builtin_func(t_shell	*shell)
 {
-	// if (!ft_strcmp(shell->cmd[0], "echo"))
-	// 	ft_echo(shell);
+	if (!ft_strcmp(shell->cmd[0], "echo") || !ft_strcmp(shell->cmd[0], "ECHO"))
+		ft_echo(shell);
 	// if (!ft_strcmp(shell->cmd[0], "cd"))
 	// 	ft_cd(shell);
-	if (!ft_strcmp(shell->cmd[0], "pwd"))
+	if (!ft_strcmp(shell->cmd[0], "pwd") || !ft_strcmp(shell->cmd[0], "PWD"))
 		ft_pwd();
 	// if (!ft_strcmp(shell->cmd[0], "export"))
 	// 	ft_export();
