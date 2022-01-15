@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:36:09 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/12 19:14:05 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/15 19:17:59 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@ static void	other_commands(char **env, t_shell *shell)
 	while (shell->full_path[i])
 	{
 		tmp = NULL;
-		tmp = ft_strjoin(shell->full_path[i], "/");
-		tmp = ft_strjoin(tmp, shell->cmd[0]);
+		if (shell->cmd[0][0] != '/')
+		{
+			tmp = ft_strjoin(shell->full_path[i], "/");
+			tmp = ft_strjoin(tmp, shell->cmd[0]);
+		}
+		else
+			tmp = ft_strdup(shell->cmd[0]);
 		if (!access(tmp, X_OK))
 			execve(tmp, shell->cmd, env);
 		i++;
@@ -32,34 +37,30 @@ static void	other_commands(char **env, t_shell *shell)
 	exit(EXIT_FAILURE);
 }
 
-static void	checking_path(t_shell *shell)
-{
-	t_structenv	*temp_env;
-
-	temp_env = shell->env_mass;
-	while (temp_env)
-	{
-		if (ft_strncmp("PATH", temp_env->key, 4) == 0)
-			shell->full_path = ft_split(temp_env->value, ':');
-		temp_env = temp_env->next;
-	}
-}
-
 void	cmd_executor(char **env, t_shell *shell)
 {
+	int	i;
 	int	pid;
 
+	pid = 10;
 	checking_path(shell);
 	if (shell->if_pipe > shell->num_pipe && shell->num_pipe)
 		close(shell->fd[shell->num_pipe - 1][1]);
+	//Билты надо поставить сюда они должны объеденить условия для форков 
 	pid = fork();
 	if (pid == 0)
 	{
+		fd_work(shell);
 		if (shell->error == 0)
 			other_commands(env, shell);
 		else
 			exit(EXIT_FAILURE);
 	}
 	if (pid > 0)
-		wait(NULL);
+	{
+		waitpid(pid, &i, 0);
+		shell->ex_flag = i / 256;
+	}
+	if (shell->if_pipe - 1 > shell->num_pipe && pid > 0)
+		pipe_executor(env, shell);
 }

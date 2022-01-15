@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:39:29 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/12 20:28:25 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/13 19:34:54 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ char	*slash(char *str, int *i)
 
 char	*tilde(char *str, int *i, t_shell *shell)
 {
-	char	*str1;
-	char	*str2;
-	int		j;
+	char		*str1;
+	char		*str2;
+	int			j;
 	t_structenv	*tmp_env;
 
 	j = *i;

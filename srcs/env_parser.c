@@ -6,20 +6,23 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:39:15 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/12 21:33:01 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:15:05 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	all_env(char **env)
+void	checking_path(t_shell *shell)
 {
-	int	i;
+	t_structenv	*temp_env;
 
-	i = 0;
-	while (env[i])
-		i++;
-	return (i);
+	temp_env = shell->env_mass;
+	while (temp_env)
+	{
+		if (ft_strncmp("PATH", temp_env->key, 4) == 0)
+			shell->full_path = ft_split(temp_env->value, ':');
+		temp_env = temp_env->next;
+	}
 }
 
 static int	key(char *env)
@@ -55,14 +58,14 @@ void	env_parser(t_shell *shell, char	**env)
 	{
 		j = key(env[i]);
 		tmp = (t_structenv *)malloc(sizeof(t_structenv));
-		tmp->flag = 1;
+		tmp->flag = 0;
 		tmp->key = ft_substr(env[i], 0, j);
 		if (!ft_strcmp("SHLVL", tmp->key))
 			parse_env_lvl(tmp, env, i, j);
 		else
 			tmp->value = ft_strdup(env[i] + 1 + j);
-		if (ft_strncmp("PATH", tmp->key, j) == 0)
-			shell->full_path = ft_split(tmp->value, ':');
+		if (ft_strncmp("HOME", tmp->key, ft_strlen(tmp->key)) == 0)
+			shell->home = ft_strdup(tmp->value);
 		tmp->next = shell->env_mass;
 		shell->env_mass = tmp;
 	}
