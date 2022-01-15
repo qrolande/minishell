@@ -6,7 +6,7 @@
 /*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/12 21:27:00 by akatlyn          ###   ########.fr       */
+/*   Updated: 2022/01/15 17:51:30 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <dirent.h>
 
 typedef struct s_structenv
 {

@@ -6,7 +6,7 @@
 /*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:06:41 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/12 21:53:54 by akatlyn          ###   ########.fr       */
+/*   Updated: 2022/01/15 18:02:40 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	builtin_func(t_shell	*shell)
 	// 	ft_cd(shell);
 	if (!ft_strcmp(shell->cmd[0], "pwd") || !ft_strcmp(shell->cmd[0], "PWD"))
 		ft_pwd();
-	// if (!ft_strcmp(shell->cmd[0], "export"))
-	// 	ft_export();
+	if (!ft_strcmp(shell->cmd[0], "export"))
+		ft_exit(shell);
 	// if (!ft_strcmp(shell->cmd[0], "unset"))
 	// 	ft_unset();
 	// if (!ft_strcmp(shell->cmd[0], "env"))
