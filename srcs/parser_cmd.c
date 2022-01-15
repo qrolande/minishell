@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:01:47 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/10 17:03:10 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/10 20:28:13 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	cmd_parser(t_shell *shell, char *str, int i, int j)
 	res = 0;
 	while (str[++i])
 	{
-		types(str, &i, shell);
+		str = types(str, &i, shell);
 		if (str[i] == ' ')
 		{
 			shell->cmd = two_dimension_check(shell->cmd, \

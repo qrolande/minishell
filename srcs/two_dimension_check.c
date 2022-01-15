@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:17:57 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/10 17:00:28 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/12 19:55:22 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 char	*find_key_value(char *tmp_key, t_shell *shell)
 {
-	int	res;
+	int			res;
+	t_structenv	*tmp_env;
 
+	tmp_env = shell->env_mass;
 	res = ft_strlen(tmp_key);
-	while (shell->env_mass)
+	while (tmp_env)
 	{
-		if (!ft_strncmp(tmp_key, shell->env_mass->key, res))
-			return (shell->env_mass->value);
-		shell->env_mass = shell->env_mass->next;
+		if (!ft_strncmp(tmp_key, tmp_env->key, res))
+			return (tmp_env->value);
+		tmp_env = tmp_env->next;
 	}
 	return ("");
 }
