@@ -6,7 +6,7 @@
 #    By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 15:51:21 by qrolande          #+#    #+#              #
-#    Updated: 2022/01/10 21:14:37 by akatlyn          ###   ########.fr        #
+#    Updated: 2022/01/16 17:44:59 by akatlyn          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,17 @@ SRCS  		=	srcs/main.c \
 				srcs/types.c \
 				srcs/syntax.c \
 				srcs/env_parser.c \
+				srcs/pipe_magic.c \
 				srcs/parser_cmd.c \
 				srcs/prepare_cmd.c \
 				srcs/cmd_executor.c \
-				srcs/two_dimension_check.c
+				srcs/cleaning_company.c \
+				srcs/two_dimension_check.c \
+				functions/builtin_func.c 
 						
 OBJS		=	${SRCS:.c=.o}
 
-LINE		=	-lreadline
+LINE		=	-lreadline -I/Users/${USER}/.brew/opt/readline/include -L/Users/${USER}/.brew/opt/readline/lib/
 
 CC			= 	gcc -g
 
