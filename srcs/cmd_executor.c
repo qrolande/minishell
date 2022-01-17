@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_executor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:36:09 by qrolande          #+#    #+#             */
 /*   Updated: 2022/01/16 16:32:13 by qrolande         ###   ########.fr       */
@@ -46,15 +46,17 @@ void	cmd_executor(char **env, t_shell *shell)
 	checking_path(shell);
 	if (shell->if_pipe > shell->num_pipe && shell->num_pipe)
 		close(shell->fd[shell->num_pipe - 1][1]);
-	//Билты надо поставить сюда они должны объеденить условия для форков 
-	pid = fork();
-	if (pid == 0)
+	if (builtin_func(shell))
 	{
-		fd_work(shell);
-		if (shell->error == 0)
-			other_commands(env, shell);
-		else
-			exit(EXIT_FAILURE);
+		pid = fork();
+		if (pid == 0)
+		{
+			fd_work(shell);
+			if (shell->error == 0)
+				other_commands(env, shell);
+			else
+				exit(EXIT_FAILURE);
+		}
 	}
 	if (pid > 0)
 	{

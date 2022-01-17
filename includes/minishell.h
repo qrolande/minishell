@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
 /*   Updated: 2022/01/16 16:10:12 by qrolande         ###   ########.fr       */
@@ -90,5 +90,11 @@ char	**env_constructor(t_shell *shell, int i, int j);
 void	cleaning_company(t_shell *shell, int flag);
 void	cmd_parser(t_shell *shell, char *str, int i, int j);
 char	**two_dimension_check(char	**arr, char *str, int *j, int i);
+
+// akatlyn
+
+int		builtin_func(t_shell	*shell);
+void	ft_pwd(void);
+void	ft_echo(t_shell		*shell);
 
 #endif

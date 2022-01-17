@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+         #
+#    By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 15:51:21 by qrolande          #+#    #+#              #
 #    Updated: 2022/01/13 19:46:04 by qrolande         ###   ########.fr        #
@@ -22,7 +22,8 @@ SRCS  		=	srcs/main.c \
 				srcs/prepare_cmd.c \
 				srcs/cmd_executor.c \
 				srcs/cleaning_company.c \
-				srcs/two_dimension_check.c
+				srcs/two_dimension_check.c \
+				functions/builtin_func.c 
 						
 OBJS		=	${SRCS:.c=.o}
 

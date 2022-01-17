@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   types.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:39:29 by qrolande          #+#    #+#             */
 /*   Updated: 2022/01/16 14:50:57 by qrolande         ###   ########.fr       */

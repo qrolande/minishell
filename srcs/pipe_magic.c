@@ -40,7 +40,6 @@ void	fd_work(t_shell *shell)
 void	pipe_executor(char **env, t_shell *shell)
 {
 	char	*tmp_pipe;
-
 	cleaning_company(shell, 2);
 	tmp_pipe = ft_strdup(shell->temp[shell->num_pipe + 1]);
 	tmp_pipe = prepare_cmd(tmp_pipe, 0, 0);

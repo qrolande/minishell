@@ -58,8 +58,8 @@ void	env_parser(t_shell *shell, char	**env)
 	{
 		j = key(env[i]);
 		tmp = (t_structenv *)malloc(sizeof(t_structenv));
-		//tmp->flag = 0;
-		tmp->key = ft_substr(env[i], 0, j);
+		tmp->flag = 0;
+			tmp->key = ft_substr(env[i], 0, j);
 		if (!ft_strcmp("SHLVL", tmp->key))
 			parse_env_lvl(tmp, env, i, j);
 		else
