@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:46:21 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/15 18:54:36 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/17 19:37:05 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void	fd_work(t_shell *shell)
 void	pipe_executor(char **env, t_shell *shell)
 {
 	char	*tmp_pipe;
-
-	cleaning_company(shell, 0);
+	cleaning_company(shell, 2);
 	tmp_pipe = ft_strdup(shell->temp[shell->num_pipe + 1]);
 	tmp_pipe = prepare_cmd(tmp_pipe, 0, 0);
 	cmd_parser(shell, tmp_pipe, -1, 0);

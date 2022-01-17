@@ -6,7 +6,7 @@
 /*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/16 17:58:49 by akatlyn          ###   ########.fr       */
+/*   Updated: 2022/01/16 16:10:12 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include "signal.h"
+
+# define LEFT 1
+# define RIGHT 2
+# define X_RIGHT 3
 
 typedef struct s_structenv
 {
@@ -65,6 +70,7 @@ typedef struct s_shell
 	struct s_shell		*next;
 }				t_shell;
 
+void	rl_replace_line();
 void	syntax(t_shell *shell);
 char	*gap(char *str, int *i);
 char	*slash(char *str, int *i);
@@ -81,7 +87,7 @@ char	*dollar(char *str, int *i, t_shell *shell);
 char	*double_gap(char *str, int *i, t_shell *shell);
 char	*find_key_value(char *tmp_key, t_shell *shell);
 char	**env_constructor(t_shell *shell, int i, int j);
-void	cleaning_company(t_shell *shell, int pipe_flag);
+void	cleaning_company(t_shell *shell, int flag);
 void	cmd_parser(t_shell *shell, char *str, int i, int j);
 char	**two_dimension_check(char	**arr, char *str, int *j, int i);
 

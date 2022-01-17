@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:13:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/15 18:34:20 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/17 19:37:44 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	pipe_work(t_shell *shell, int i)
 		while (j < shell->if_pipe)
 		{
 			shell->fd[j] = (int *)malloc(sizeof(int) * 2);
-			pipe(shell->fd[j++]);
+			pipe(shell->fd[j]);
+			j++;
 		}
 		shell->if_pipe += 1;
 		shell->num_pipe = 0;
@@ -56,17 +57,22 @@ static void	semicolon_check(t_shell *shell)
 
 static int	if_another_minishell(int *i, t_shell *shell)
 {
+	int	a;
 	int	pid;
 
 	pid = 0;
+	a = 0;
 	if (shell->splitted_cmd[*i][0] == '.')
 	{
+		signal(SIGINT, SIG_IGN);
 		shell->cmd = ft_split(shell->splitted_cmd[*i], ' ');
 		pid = fork();
 		if (pid == 0)
 			execve(shell->cmd[0], shell->cmd, env_constructor(shell, 0, 0));
-		wait(NULL);
+		waitpid(pid, &a, 0);
+		signal(SIGINT, SIG_DFL);
 		*i += 1;
+		shell->ex_flag = a / 256;
 		return (1);
 	}
 	return (0);
@@ -96,15 +102,11 @@ void	begin(t_shell *shell, char **env)
 			}
 			cmd_parser(shell, shell->splitted_cmd[i], -1, 0);
 			cmd_executor(env, shell);
-			cleaning_company(shell, 0);
+			cleaning_company(shell, 1);
 			shell->num_cmd--;
 			i++;
 		}
-		if (shell->splitted_cmd)
-		{
-			free(shell->splitted_cmd);
-			shell->splitted_cmd = NULL;
-		}
+		cleaning_company(shell, 3);
 		shell->error = 0;
 	}
 }
