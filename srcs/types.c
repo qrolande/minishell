@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:39:29 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/13 19:34:54 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/16 14:50:57 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	*double_gap(char *str, int *i, t_shell *shell)
 	str1 = ft_strjoin(str1, str3);
 	free(str);
 	*i -= 2;
-	printf("str1 = %s\n", str1);
 	return (str1);
 }
 
