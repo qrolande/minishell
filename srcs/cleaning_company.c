@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 20:56:42 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/17 19:36:51 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/19 21:59:29 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static void	clean_pipe(t_shell *shell, int i)
 			free(shell->temp[i]);
 		free(shell->temp);
 		shell->temp = NULL;
-	}		i = 0;
+	}
+	i = 0;
 	if (shell->fd)
 	{
 		while (i < shell->if_pipe - 1)
