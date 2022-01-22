@@ -6,7 +6,7 @@
 #    By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 15:51:21 by qrolande          #+#    #+#              #
-#    Updated: 2022/01/13 19:46:04 by qrolande         ###   ########.fr        #
+#    Updated: 2022/01/22 17:58:08 by akatlyn          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,10 @@ SRCS  		=	srcs/main.c \
 				srcs/cmd_executor.c \
 				srcs/cleaning_company.c \
 				srcs/two_dimension_check.c \
-				functions/builtin_func.c 
+				functions/builtin_func.c \
+				functions/pwd.c \
+				functions/echo.c \
+				functions/exit.c
 						
 OBJS		=	${SRCS:.c=.o}
 
@@ -33,7 +36,7 @@ CC			= 	gcc -g
 
 RM			= 	rm -f
 
-CFLAGS		= 	-Wall -Wextra -Werror
+CFLAGS		= 	
 
 INCLUDES	= 	./includes/minishell.h
 
