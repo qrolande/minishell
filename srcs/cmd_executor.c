@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:36:09 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/22 17:04:52 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/23 14:43:26 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	other_commands(t_shell *shell)
 		if (!access(tmp, X_OK))
 			execve(tmp, shell->cmd, env_constructor(shell, 0, 0));
 	}
-	printf("minishell: %s: command not found\n", shell->cmd[0]);
+	printf("minishell> %s: command not found\n", shell->cmd[0]);
 	exit(127);
 }
 

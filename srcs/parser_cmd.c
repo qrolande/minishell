@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:01:47 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/22 17:58:47 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/23 15:37:28 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ static char	*red_her_parser(t_shell *shell, char *str, int i)
 			while (str[i] && (str[i] != '\"' || str[i] != '\''))
 				i++;
 		}
-		if ((str[i] == '<' && str[i + 1] != '<') || str[i] == '<')
+		if ((str[i] == '<' && str[i + 1] != '<') || str[i] == '>')
 		{
 			str = redirect(shell, str, &i);
-			i = 0;
+			i = -1;
 		}
 		// if (str[i] == '<' && str[i + 1] == '<')
 		// {
@@ -84,6 +84,7 @@ static char	*red_her_parser(t_shell *shell, char *str, int i)
 		// }
 		i++;
 	}
+	return (str);
 }
 
 void	cmd_parser(t_shell *shell, char *str, int i, int j)
@@ -91,7 +92,9 @@ void	cmd_parser(t_shell *shell, char *str, int i, int j)
 	int	res;
 
 	res = 0;
+	printf("str = %s\n", str);
 	str = red_her_parser(shell, str, 0);
+	printf("str = %s\n", str);
 	while (str[++i] && shell->error == 0)
 	{
 		str = types(str, &i, shell);
