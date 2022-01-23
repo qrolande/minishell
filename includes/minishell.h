@@ -6,7 +6,7 @@
 /*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/22 18:20:12 by akatlyn          ###   ########.fr       */
+/*   Updated: 2022/01/23 16:24:17 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,11 @@ char	**two_dimension_check(char	**arr, char *str, int *j, int i);
 
 // akatlyn
 
-int		builtin_func(t_shell	*shell);
-void	ft_pwd(void);
-void	ft_echo(t_shell		*shell);
-void	ft_exit(t_shell	*shell);
+int					builtin_func(t_shell	*shell);
+void				ft_pwd(void);
+void				ft_echo(t_shell		*shell);
+void				ft_exit(t_shell	*shell);
+unsigned long long	ft_atoi_long(char *str, int i);
+// void				ft_ex_error(char *str);
 
 #endif
