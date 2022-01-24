@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:29:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/20 19:08:00 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:31:51 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	init(t_shell *shell, char **av, char **env)
 	shell->cmd = NULL;
 	shell->env_mass = NULL;
 	shell->full_path = NULL;
+	shell->her.if_heredoc = 1;
 	shell->if_pipe = 0;
 	shell->num_pipe = 10;
 	shell->redir.x_fd = 0;

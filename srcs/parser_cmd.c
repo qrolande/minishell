@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:01:47 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/23 15:37:28 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/24 22:07:00 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ static char	*red_her_parser(t_shell *shell, char *str, int i)
 		}
 		if ((str[i] == '<' && str[i + 1] != '<') || str[i] == '>')
 		{
-			str = redirect(shell, str, &i);
+			str = redirect(shell, str, i);
 			i = -1;
 		}
-		// if (str[i] == '<' && str[i + 1] == '<')
-		// {
-		// 	str = heredoc(shell, str, i);
-		// 	i = 0;
-		// }
+		if (str[i] == '<' && str[i + 1] == '<')
+		{
+			str = heredoc(shell, str, i);
+			i = -1;
+		}
 		i++;
 	}
 	return (str);
@@ -92,9 +92,7 @@ void	cmd_parser(t_shell *shell, char *str, int i, int j)
 	int	res;
 
 	res = 0;
-	printf("str = %s\n", str);
 	str = red_her_parser(shell, str, 0);
-	printf("str = %s\n", str);
 	while (str[++i] && shell->error == 0)
 	{
 		str = types(str, &i, shell);

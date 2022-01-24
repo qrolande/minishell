@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:46:21 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/23 16:30:04 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:24:11 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	pipe_work(t_shell *shell, int i, int j)
 
 static void	if_red_her(t_shell *shell)
 {
-	// if (shell->her.if_heredoc)
-	// 	dup2(shell->her.fd[0], 0);
+	if (shell->her.if_heredoc)
+		dup2(shell->her.fd[0], 0);
 	if (shell->redir.r_num || shell->redir.l_num)
 	{
 		if (shell->redir.r_num)

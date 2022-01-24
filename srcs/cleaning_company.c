@@ -6,13 +6,13 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 20:56:42 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/23 15:18:25 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:27:02 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void clean_other(t_shell *shell)
+static void	clean_other(t_shell *shell)
 {
 	if (shell->redir.r_num)
 	{
@@ -24,11 +24,11 @@ static void clean_other(t_shell *shell)
 		close(shell->redir.l_fd);
 		shell->redir.l_num = 0;
 	}
-	// if (shell->her.if_heredoc)
-	// {
-	// 	shell->her.if_heredoc = 0;
-	// 	close(shell->her.fd[0]);
-	// }
+	if (shell->her.if_heredoc)
+	{
+		shell->her.if_heredoc = 0;
+		close(shell->her.fd[0]);
+	}
 }
 
 static void	clean_pipe(t_shell *shell, int i)

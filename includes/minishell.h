@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/23 14:57:33 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:33:48 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ char	*tilde(char *str, int *i, t_shell *shell);
 char	*dollar(char *str, int *i, t_shell *shell);
 char	*finder(char *str, int *i, t_shell *shell);
 void	cleaning_company(t_shell *shell, int flag);
-char	*redirect(t_shell *shell, char *str, int *i);
+char	*heredoc(t_shell *shell, char *str, int i);
+char	*redirect(t_shell *shell, char *str, int i);
 char	*double_gap(char *str, int *i, t_shell *shell);
 char	*find_key_value(char *tmp_key, t_shell *shell);
 char	**env_constructor(t_shell *shell, int i, int j);
