@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:39:29 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/16 14:50:57 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/19 23:05:11 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 char	*gap(char *str, int *i)
 {
-	char	*str1;
-	char	*str2;
-	char	*str3;
+	char	*str_tmp[4];
 	int		j;
 
 	j = *i;
@@ -25,42 +23,35 @@ char	*gap(char *str, int *i)
 		if (str[*i] == '\'')
 			break ;
 	}
-	str1 = ft_substr(str, 0, j);
-	str2 = ft_substr(str, j + 1, *i - j - 1);
-	str3 = ft_strdup(str + *i + 1);
-	str1 = ft_strjoin(str1, str2);
-	str1 = ft_strjoin(str1, str3);
+	str_tmp[0] = ft_substr(str, 0, j);
+	str_tmp[1] = ft_substr(str, j + 1, *i - j - 1);
+	str_tmp[2] = ft_strdup(str + *i + 1);
+	str_tmp[3] = ft_strjoin_free(str_tmp[0], str_tmp[1]);
+	str_tmp[0] = ft_strjoin_free(str_tmp[3], str_tmp[2]);
 	free(str);
+	free(str_tmp[1]);
+	free(str_tmp[2]);
 	*i -= 1;
-	return (str1);
+	return (str_tmp[0]);
 }
 
 char	*double_gap(char *str, int *i, t_shell *shell)
 {
-	char	*str1;
-	char	*str2;
-	char	*str3;
+	char	*str_tmp[4];
 	int		j;
 
 	j = *i;
-	while (str[++(*i)])
-	{
-		if (str[*i] == '\\' && (str[*i + 1] == '\"' \
-			|| str[*i + 1] == '$' || str[*i + 1] == '\\'))
-			str = slash(str, i);
-		if (str[*i] == '$')
-			str = dollar(str, i, shell);
-		if (str[*i] == '\"')
-			break ;
-	}
-	str1 = ft_substr(str, 0, j);
-	str2 = ft_substr(str, j + 1, *i - j - 1);
-	str3 = ft_strdup(str + *i + 1);
-	str1 = ft_strjoin(str1, str2);
-	str1 = ft_strjoin(str1, str3);
+	str = finder(str, i, shell);
+	str_tmp[0] = ft_substr(str, 0, j);
+	str_tmp[1] = ft_substr(str, j + 1, *i - j - 1);
+	str_tmp[2] = ft_strdup(str + *i + 1);
+	str_tmp[3] = ft_strjoin_free(str_tmp[0], str_tmp[1]);
+	str_tmp[0] = ft_strjoin_free(str_tmp[3], str_tmp[2]);
 	free(str);
-	*i -= 2;
-	return (str1);
+	free(str_tmp[1]);
+	free(str_tmp[2]);
+	*i -= 1;
+	return (str_tmp[0]);
 }
 
 char	*slash(char *str, int *i)
@@ -70,7 +61,7 @@ char	*slash(char *str, int *i)
 
 	str1 = ft_substr(str, 0, *i);
 	str2 = ft_strdup(str + *i + 1);
-	str1 = ft_strjoin(str1, str2);
+	str1 = ft_strjoin_free(str1, str2);
 	free(str);
 	*i += 1;
 	return (str1);
@@ -78,22 +69,18 @@ char	*slash(char *str, int *i)
 
 char	*tilde(char *str, int *i, t_shell *shell)
 {
-	char		*str1;
-	char		*str2;
-	int			j;
-	t_structenv	*tmp_env;
+	int		j;
+	char	*str1;
+	char	*str2;
+	char	*str3;
 
 	j = *i;
-	tmp_env = shell->env_mass;
 	str1 = ft_substr(str, 0, j);
-	while (ft_strncmp(tmp_env->key, \
-			"HOME", ft_strlen(tmp_env->key)))
-		tmp_env = tmp_env->next;
-	str2 = ft_strdup (str + j + 1);
-	str1 = ft_strjoin(str1, tmp_env->value);
-	str1 = ft_strjoin(str1, str2);
+	str2 = ft_strdup(str + j + 1);
+	str3 = ft_strjoin_free(str1, shell->home);
+	str1 = ft_strjoin_free(str3, str2);
+	free(str2);
 	free(str);
-	*i += ft_strlen(tmp_env->value);
 	return (str1);
 }
 
@@ -116,9 +103,10 @@ char	*dollar(char *str, int *i, t_shell *shell)
 	tmp_key = ft_substr(str, j + 1, *i - j - 1);
 	tmp_key = find_key_value(tmp_key, shell);
 	str2 = ft_strdup(str + *i);
-	str1 = ft_strjoin(str1, tmp_key);
-	str1 = ft_strjoin(str1, str2);
+	str1 = ft_strjoin_free(str1, tmp_key);
+	str1 = ft_strjoin_free(str1, str2);
 	free(str);
+	free(str2);
 	*i -= 1;
 	return (str1);
 }

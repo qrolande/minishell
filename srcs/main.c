@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:29:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/16 14:52:28 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:31:51 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ static void	init(t_shell *shell, char **av, char **env)
 	(void)av;
 	shell->num_cmd = 1;
 	shell->cmd = NULL;
-	shell->line = NULL;
 	shell->env_mass = NULL;
+	shell->full_path = NULL;
+	shell->her.if_heredoc = 1;
 	shell->if_pipe = 0;
 	shell->num_pipe = 10;
 	shell->redir.x_fd = 0;
@@ -53,14 +54,15 @@ int	main(int ac, char **av, char **env)
 
 	shell = (t_shell *)malloc(sizeof(t_shell));
 	init(shell, av, env);
-	// signals();
 	while (ac)
 	{
+		shell->line = NULL;
+		//signals();
 		shell->line = readline("minishell> ");
 		if (shell->line == NULL)
 			shell->line = ft_strdup("exit");
-		else if (shell->line)
-			begin(shell, env);
+		else if (shell->line && ft_strlen(shell->line))
+			begin(shell, env, 0);
 		free(shell->line);
 	}
 	return (0);

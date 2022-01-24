@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:17:57 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/12 19:55:22 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/20 00:00:30 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ char	**two_dimension_check(char	**arr, char *str, int *j, int i)
 			free(arr[i]);
 			i++;
 		}
+		free(arr);
 	}
 	tmp_arr[i] = ft_strdup(str);
 	tmp_arr[i + 1] = NULL;
-	free(arr);
 	free(str);
 	*j += 1;
 	return (tmp_arr);

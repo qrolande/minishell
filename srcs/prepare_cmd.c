@@ -6,47 +6,43 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 17:15:13 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/13 21:07:54 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/19 22:37:15 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	del_space(char *str, int i, int j)
+static char	*del_space(char *str, int *i)
 {
-	while (str[i])
-	{
-		if ((str[i] != ' ' && str[i + 1]) || str[i + 1] != ' ')
-			j++;
-		i++;
-	}
-	return (j);
+	char	*str1;
+	char	*str2;
+
+	str1 = ft_substr(str, 0, *i);
+	str2 = ft_strdup(str + *i + 1);
+	str1 = ft_strjoin_free(str1, str2);
+	free(str);
+	free(str2);
+	return (str1);
 }
 
-char	*prepare_cmd(char *str, int i, int j)
+char	*prepare_cmd(char *str, int i)
 {
-	int		res;
-	char	*tmp_str;
-	char	*tmp_str2;
-
-	res = del_space(str, i, j);
-	tmp_str = (char *)malloc(res + 1);
+	while (str[i] == ' ')
+		str = del_space(str, &i);
 	while (str[i])
 	{
-		if ((str[i] != ' ' && str[i + 1]) || str[i + 1] != ' ')
+		if (str[i] == '\'' || str[i] == '\"')
 		{
-			tmp_str[j] = str[i];
-			j++;
+			i++;
+			while ((str[i] != '\'' || str[i] != '\"') && str[i])
+				i++;
+		}
+		if (str[i + 1] && str[i] == ' ' && str[i + 1] == ' ')
+		{
+			str = del_space(str, &i);
+			i = 0;
 		}
 		i++;
 	}
-	tmp_str[j] = '\0';
-	free(str);
-	if (tmp_str[0] == ' ')
-	{
-		tmp_str2 = ft_strdup(tmp_str + 1);
-		free(tmp_str);
-		return (tmp_str2);
-	}
-	return (tmp_str);
+	return (str);
 }

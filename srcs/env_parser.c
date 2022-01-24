@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:39:15 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/16 15:05:44 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/22 15:01:28 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	env_parser(t_shell *shell, char	**env)
 		j = key(env[i]);
 		tmp = (t_structenv *)malloc(sizeof(t_structenv));
 		tmp->flag = 0;
-			tmp->key = ft_substr(env[i], 0, j);
+		tmp->key = ft_substr(env[i], 0, j);
 		if (!ft_strcmp("SHLVL", tmp->key))
 			parse_env_lvl(tmp, env, i, j);
 		else

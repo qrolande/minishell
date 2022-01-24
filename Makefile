@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+         #
+#    By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 15:51:21 by qrolande          #+#    #+#              #
-#    Updated: 2022/01/13 19:46:04 by qrolande         ###   ########.fr        #
+#    Updated: 2022/01/24 21:24:48 by qrolande         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ SRCS  		=	srcs/main.c \
 				srcs/begin.c \
 				srcs/types.c \
 				srcs/syntax.c \
+				srcs/heredoc.c \
+				srcs/redirect.c \
 				srcs/env_parser.c \
 				srcs/pipe_magic.c \
 				srcs/parser_cmd.c \

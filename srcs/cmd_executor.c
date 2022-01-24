@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_executor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:36:09 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/16 16:32:13 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/23 14:43:26 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	other_commands(char **env, t_shell *shell)
+static void	other_commands(t_shell *shell)
 {
 	int		i;
 	char	*tmp;
 
-	i = 0;
+	i = -1;
 	tmp = NULL;
-	while (shell->full_path[i])
+	while (shell->full_path && shell->full_path[++i])
 	{
 		tmp = NULL;
 		if (shell->cmd[0][0] != '/')
@@ -30,39 +30,37 @@ static void	other_commands(char **env, t_shell *shell)
 		else
 			tmp = ft_strdup(shell->cmd[0]);
 		if (!access(tmp, X_OK))
-			execve(tmp, shell->cmd, env);
-		i++;
+			execve(tmp, shell->cmd, env_constructor(shell, 0, 0));
 	}
-	printf("minishell: %s: command not found\n", shell->cmd[0]);
-	exit(EXIT_FAILURE);
+	printf("minishell> %s: command not found\n", shell->cmd[0]);
+	exit(127);
 }
 
-void	cmd_executor(char **env, t_shell *shell)
+void	cmd_executor(char **env, t_shell *shell, int pid)
 {
 	int	i;
-	int	pid;
+	int	res = 1;
 
-	pid = 10;
 	checking_path(shell);
-	if (shell->if_pipe > shell->num_pipe && shell->num_pipe)
-		close(shell->fd[shell->num_pipe - 1][1]);
-	if (builtin_func(shell))
+	fd_work(shell, 0);
+	//res = builtin_func(shell);
+	if (res)
 	{
 		pid = fork();
 		if (pid == 0)
 		{
-			fd_work(shell);
+			fd_work(shell, 1);
 			if (shell->error == 0)
-				other_commands(env, shell);
+				other_commands(shell);
 			else
 				exit(EXIT_FAILURE);
 		}
 	}
-	if (pid > 0)
+	if (pid)
 	{
 		waitpid(pid, &i, 0);
-		shell->ex_flag = i / 256;
+		g_ex_flag = i / 256;
 	}
-	if (shell->if_pipe - 1 > shell->num_pipe && pid > 0)
+	if (shell->if_pipe - 1 > shell->num_pipe)
 		pipe_executor(env, shell);
 }
