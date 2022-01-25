@@ -6,11 +6,35 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:36:09 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/23 14:43:26 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/25 23:56:55 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static int	builtin_func(t_shell *shell)
+{
+	if (!ft_strcmp(shell->cmd[0], "echo") \
+		|| !ft_strcmp(shell->cmd[0], "ECHO"))
+		ft_echo(shell, 1);
+	else if (!ft_strcmp(shell->cmd[0], "pwd") \
+		|| !ft_strcmp(shell->cmd[0], "PWD"))
+		ft_pwd(shell);
+	else if (!ft_strcmp(shell->cmd[0], "exit") \
+		|| !ft_strcmp(shell->cmd[0], "EXIT"))
+		ft_exit(shell);
+	else
+		return (1);
+	// if (!ft_strcmp(shell->cmd[0], "cd"))
+	// 	ft_cd(shell);
+	// if (!ft_strcmp(shell->cmd[0], "unset"))
+	// 	ft_unset();
+	// if (!ft_strcmp(shell->cmd[0], "env"))
+	// 	ft_unset();
+	// if (!ft_strcmp(shell->cmd[0], "exit"))
+	// 	ft_unset();
+	return (0);
+}
 
 static void	other_commands(t_shell *shell)
 {
@@ -39,11 +63,11 @@ static void	other_commands(t_shell *shell)
 void	cmd_executor(char **env, t_shell *shell, int pid)
 {
 	int	i;
-	int	res = 1;
+	int	res;
 
 	checking_path(shell);
 	fd_work(shell, 0);
-	//res = builtin_func(shell);
+	res = builtin_func(shell);
 	if (res)
 	{
 		pid = fork();
