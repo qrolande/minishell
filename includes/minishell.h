@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/24 19:33:48 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/25 21:06:34 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <string.h>
-
-# define LEFT_FLAG 1
-# define RIGHT_FLAG 2
-# define X_RIGHT_FLAG 3
 
 int	g_ex_flag;
 
@@ -104,8 +100,8 @@ char	**two_dimension_check(char	**arr, char *str, int *j, int i);
 
 // akatlyn
 
-int		builtin_func(t_shell *shell);
-void	ft_pwd(void);
-void	ft_echo(t_shell *shell);
+void	ft_pwd(t_shell *shell);
+void	ft_exit(t_shell	*shell);
+void	ft_echo(t_shell *shell, int i);
 
 #endif

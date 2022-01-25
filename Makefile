@@ -6,7 +6,7 @@
 #    By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 15:51:21 by qrolande          #+#    #+#              #
-#    Updated: 2022/01/24 21:24:48 by qrolande         ###   ########.fr        #
+#    Updated: 2022/01/25 20:50:32 by qrolande         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SRCS  		=	srcs/main.c \
 				srcs/cmd_executor.c \
 				srcs/cleaning_company.c \
 				srcs/two_dimension_check.c \
-				functions/builtin_func.c 
+				functions/echo.c \
+				functions/exit.c \
+				functions/pwd.c
 						
 OBJS		=	${SRCS:.c=.o}
 
