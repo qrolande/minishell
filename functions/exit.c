@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 18:02:51 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/25 23:47:41 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/27 21:23:51 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static int	check_args(t_shell *shell)
 	j = 0;
 	while (shell->cmd[i])
 	{
-		i++;
 		if (i == 1)
 		{
 			if (shell->cmd[i][j] == '-' || shell->cmd[i][j] == '+')
@@ -80,12 +79,13 @@ static int	check_args(t_shell *shell)
 			if (!first_pars(shell->cmd[i], j))
 				return (0);
 		}
-		if (i > 2)
+		if (i >= 2)
 		{
 			write(2, "minishell: exit: too many arguments\n", 36);
 			g_ex_flag = 1;
 			return (0);
 		}
+		i++;
 	}
 	return (i);
 }
