@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:29:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/24 19:31:51 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/27 21:02:51 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,6 @@ static void	init(t_shell *shell, char **av, char **env)
 	env_parser(shell, env);
 }
 
-// static void	signals_work(int signal)
-// {
-// 	(void)signal;
-// 	rl_on_new_line();
-// 	rl_redisplay();
-// 	write(1, "  \n", 3);
-// 	rl_on_new_line();
-// 	rl_replace_line("", 0);
-// 	rl_redisplay();
-// }
-
-// static void	signals(void)
-// {
-// 	signal(SIGINT, signals_work);
-// 	signal(SIGQUIT, SIG_IGN);
-// }
-
 int	main(int ac, char **av, char **env)
 {
 	t_shell	*shell;
@@ -57,11 +40,12 @@ int	main(int ac, char **av, char **env)
 	while (ac)
 	{
 		shell->line = NULL;
-		//signals();
+		signals_first();
 		shell->line = readline("minishell> ");
 		if (shell->line == NULL)
 			shell->line = ft_strdup("exit");
-		else if (shell->line && ft_strlen(shell->line))
+		signals_second();
+		if (ft_strlen(shell->line))
 			begin(shell, env, 0);
 		free(shell->line);
 	}

@@ -17,10 +17,12 @@ SRCS  		=	srcs/main.c \
 				srcs/types.c \
 				srcs/syntax.c \
 				srcs/heredoc.c \
+				srcs/signals.c \
 				srcs/redirect.c \
-				srcs/env_parser.c \
 				srcs/pipe_magic.c \
+				srcs/env_parser.c \
 				srcs/parser_cmd.c \
+				srcs/env_parser2.c \
 				srcs/prepare_cmd.c \
 				srcs/cmd_executor.c \
 				srcs/cleaning_company.c \
