@@ -6,7 +6,7 @@
 #    By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 15:51:21 by qrolande          #+#    #+#              #
-#    Updated: 2022/01/27 21:22:11 by akatlyn          ###   ########.fr        #
+#    Updated: 2022/01/28 00:23:11 by akatlyn          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ CC			= 	gcc -g
 
 RM			= 	rm -f
 
-CFLAGS		= 	-Wall -Wextra -Werror
+CFLAGS		= 	
 
 INCLUDES	= 	./includes/minishell.h
 
