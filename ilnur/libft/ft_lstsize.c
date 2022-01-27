@@ -1,13 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmorty <dmorty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/23 13:37:06 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/28 00:22:57 by akatlyn          ###   ########.fr       */
+/*   Created: 2021/04/25 19:40:12 by dmorty            #+#    #+#             */
+/*   Updated: 2021/04/28 22:35:26 by dmorty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../includes/minishell.h"
+#include "libft.h"
+#include <stdio.h>
+
+int	ft_lstsize(t_list *lst)
+{
+	int		i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}

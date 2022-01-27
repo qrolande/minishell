@@ -1,13 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmorty <dmorty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/23 13:37:06 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/28 00:22:57 by akatlyn          ###   ########.fr       */
+/*   Created: 2021/04/19 14:30:05 by dmorty            #+#    #+#             */
+/*   Updated: 2021/04/24 19:21:05 by dmorty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../includes/minishell.h"
+#include "libft.h"
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	while (n--)
+	{
+		if (*(unsigned char *)s1 != *(unsigned char *)s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		s1++;
+		s2++;
+	}
+	return (0);
+}

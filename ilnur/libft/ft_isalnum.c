@@ -1,13 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmorty <dmorty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/23 13:37:06 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/28 00:22:57 by akatlyn          ###   ########.fr       */
+/*   Created: 2021/04/20 15:17:04 by dmorty            #+#    #+#             */
+/*   Updated: 2021/04/24 19:20:33 by dmorty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../includes/minishell.h"
+#include "libft.h"
+
+int	ft_isalnum(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else if (c >= 65 && c <= 90)
+		return (1);
+	else if (c >= 97 && c <= 122)
+		return (1);
+	return (0);
+}

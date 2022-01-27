@@ -1,13 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmorty <dmorty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/23 13:37:06 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/28 00:22:57 by akatlyn          ###   ########.fr       */
+/*   Created: 2021/04/25 19:04:07 by dmorty            #+#    #+#             */
+/*   Updated: 2021/04/25 19:17:59 by dmorty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../includes/minishell.h"
+#include "libft.h"
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (lst && new)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
+}

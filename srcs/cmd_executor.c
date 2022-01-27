@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_executor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:36:09 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/25 23:56:55 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/27 21:31:02 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ static int	builtin_func(t_shell *shell)
 	else if (!ft_strcmp(shell->cmd[0], "exit") \
 		|| !ft_strcmp(shell->cmd[0], "EXIT"))
 		ft_exit(shell);
+	else if (!ft_strcmp(shell->cmd[0], "env") \
+		|| !ft_strcmp(shell->cmd[0], "ENV"))
+		ft_env(shell);
 	else
 		return (1);
-	// if (!ft_strcmp(shell->cmd[0], "cd"))
-	// 	ft_cd(shell);
 	// if (!ft_strcmp(shell->cmd[0], "unset"))
 	// 	ft_unset();
 	// if (!ft_strcmp(shell->cmd[0], "env"))

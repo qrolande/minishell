@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/27 22:29:59 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/28 00:23:26 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ char	**two_dimension_check(char	**arr, char *str, int *j, int i);
 void	ft_pwd(t_shell *shell);
 void	ft_exit(t_shell	*shell);
 void	ft_echo(t_shell *shell, int i);
+void	ft_env(t_shell	*shell);
 
 #endif

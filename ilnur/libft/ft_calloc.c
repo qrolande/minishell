@@ -1,13 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmorty <dmorty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/23 13:37:06 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/28 00:22:57 by akatlyn          ###   ########.fr       */
+/*   Created: 2021/04/21 20:48:18 by dmorty            #+#    #+#             */
+/*   Updated: 2021/04/24 19:20:17 by dmorty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../includes/minishell.h"
+#include "libft.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*mem;
+
+	mem = malloc(nmemb * size);
+	if (!mem)
+		return (NULL);
+	ft_memset(mem, 0, nmemb * size);
+	return (mem);
+}

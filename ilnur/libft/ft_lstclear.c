@@ -1,13 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dmorty <dmorty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/23 13:37:06 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/28 00:22:57 by akatlyn          ###   ########.fr       */
+/*   Created: 2021/04/27 14:30:48 by dmorty            #+#    #+#             */
+/*   Updated: 2021/04/27 14:36:34 by dmorty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../includes/minishell.h"
+#include "libft.h"
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*temp;
+
+	if (lst)
+	{
+		while (*lst)
+		{
+			temp = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			(*lst) = temp;
+		}
+	}
+}

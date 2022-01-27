@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 21:04:19 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/28 00:21:50 by akatlyn          ###   ########.fr       */
+/*   Created: 2022/01/27 21:19:57 by akatlyn           #+#    #+#             */
+/*   Updated: 2022/01/27 23:50:49 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../includes/minishell.h"
 
-void	ft_pwd(t_shell *shell)
+void	ft_env(t_shell	*shell)
 {
-	char	*line;
-	int		fd;
+	t_structenv	*tmp;
+	int			fd;
 
 	fd = 1;
+	tmp = shell->env_mass;
 	if (shell->redir.r_num || shell->redir.x_num)
 		fd = shell->redir.r_fd;
-	if (shell->if_pipe - 1 > shell->num_pipe)
+	if (shell->num_pipe < shell->if_pipe - 1)
 		fd = shell->fd[shell->num_pipe][1];
-	line = malloc(1000);
-	getcwd(line, 1000);
-	if (!line)
+	while (tmp)
 	{
-		perror("Reading path error\n");
-		g_ex_flag = 1;
-		return ;
+		if (tmp->key)
+		{
+			ft_putstr_fd(tmp->key, fd);
+			write(fd, "=", 1);
+			if (tmp->value)
+				ft_putstr_fd(tmp->value, fd);
+			write(fd, "\n", 1);
+		}
+		tmp = tmp->next;
 	}
-	else
-	{
-		ft_putstr_fd(line, fd);
-		write(fd, "\n", 1);
-	}
-	free(line);
 	g_ex_flag = 0;
 }

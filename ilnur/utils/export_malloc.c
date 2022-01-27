@@ -1,13 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   export_malloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bprovolo <bprovolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/23 13:37:06 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/28 00:22:57 by akatlyn          ###   ########.fr       */
+/*   Created: 2022/01/18 19:22:37 by bprovolo          #+#    #+#             */
+/*   Updated: 2022/01/18 19:47:04 by bprovolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../includes/minishell.h"
+#include "../includes/minishell.h"
+
+char	**export_malloc(t_env *tmp, int i, t_node *data)
+{
+	tmp = data->env_lst;
+	while (tmp)
+	{
+		++i;
+		tmp = tmp->next;
+	}
+	return ((char **)malloc(sizeof(char *) * (i + 1)));
+}
