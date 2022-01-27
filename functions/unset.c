@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 20:54:24 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/26 21:35:26 by akatlyn          ###   ########.fr       */
+/*   Created: 2022/01/26 21:36:05 by akatlyn           #+#    #+#             */
+/*   Updated: 2022/01/26 23:06:01 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*set_old_pwd(t_shell	*shell)
+static int monitoring(char *str)
 {
-	char	*line;
+	int i;
 
-	
-}
-
-void choice_way(t_shell *shell, char **way)
-{
-	if (!shell->cmd[1])
-		*way = ft_strjoin(shell->home, "/");
-	else if (!ft_strcmp(shell->cmd[1], "-"))
+	i = 0;
+	if (!ft_isalpha(str[i]) && str[i])
+		return (1);
+	while (str[i] && str[i] != '=' && str[i] != '+')
 	{
-		*way = set_old_pwd(shell);
+		if (!ft_isalnum(str[i]) && str[i] != '_')
+		i++;
 	}
+	if (str[i + 1] != '_' && str[i] == '+')
+		return (1);
+	return (0);
 }
 
-void ft_cd(t_shell	*shell)
+void	unset(t_shell	*shell)
 {
-	DIR		*dir;
-	char	*way;
+	int i;
 
-	choice_way(shell, way);
-	
-
+	i = 1;
+	while (shell->cmd[i])
+	{
+		if(monitoring(shell->cmd[i]))
+			;
+		i++;
+	}
 }

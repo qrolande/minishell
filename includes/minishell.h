@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/25 21:06:34 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/27 21:20:07 by akatlyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libft/libft.h"
 # include "signal.h"
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -103,5 +103,6 @@ char	**two_dimension_check(char	**arr, char *str, int *j, int i);
 void	ft_pwd(t_shell *shell);
 void	ft_exit(t_shell	*shell);
 void	ft_echo(t_shell *shell, int i);
+void	ft_env(t_shell	*shell);
 
 #endif
