@@ -28,7 +28,9 @@ SRCS  		=	srcs/main.c \
 				functions/echo.c \
 				functions/exit.c \
 				functions/pwd.c \
-				functions/env.c
+				functions/env.c \
+				functions/cd.c \
+				functions/unset.c
 						
 OBJS		=	${SRCS:.c=.o}
 

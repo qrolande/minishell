@@ -26,14 +26,14 @@ static int	builtin_func(t_shell *shell)
 	else if (!ft_strcmp(shell->cmd[0], "env") \
 		|| !ft_strcmp(shell->cmd[0], "ENV"))
 		ft_env(shell);
+	else if (!ft_strcmp(shell->cmd[0], "cd") \
+		|| !ft_strcmp(shell->cmd[0], "CD"))
+	 	ft_cd(shell);
+	else if (!ft_strcmp(shell->cmd[0], "unset") \
+		|| !ft_strcmp(shell->cmd[0], "UNSET"))
+	 	ft_unset(shell);
 	else
 		return (1);
-	// if (!ft_strcmp(shell->cmd[0], "unset"))
-	// 	ft_unset();
-	// if (!ft_strcmp(shell->cmd[0], "env"))
-	// 	ft_unset();
-	// if (!ft_strcmp(shell->cmd[0], "exit"))
-	// 	ft_unset();
 	return (0);
 }
 

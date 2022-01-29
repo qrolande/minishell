@@ -104,5 +104,7 @@ void	ft_pwd(t_shell *shell);
 void	ft_exit(t_shell	*shell);
 void	ft_echo(t_shell *shell, int i);
 void	ft_env(t_shell	*shell);
+void	ft_cd(t_shell	*shell);
+void	ft_unset(t_shell	*shell);
 
 #endif
