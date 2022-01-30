@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/30 06:36:25 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 06:47:38 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,9 @@ void	ft_pwd(t_shell *shell);
 void	ft_export_with_param(t_shell *shell, int i, int j);
 void	ft_export_without_param(t_shell *shell, int i, int j);
 void	ft_echo(t_shell *shell, int i);
+void	ft_unset(t_shell	*shell);
 void	ft_exit(t_shell	*shell);
 void	ft_env(t_shell	*shell);
+void	ft_cd(t_shell	*shell);
 
 #endif

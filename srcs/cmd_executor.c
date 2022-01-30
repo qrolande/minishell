@@ -6,11 +6,24 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:36:09 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/30 06:38:34 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 06:55:26 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+static int	builtin_func_two(t_shell *shell)
+{
+	if (!ft_strcmp(shell->cmd[0], "cd") \
+		|| !ft_strcmp(shell->cmd[0], "CD"))
+		ft_cd(shell);
+	else if (!ft_strcmp(shell->cmd[0], "unset") \
+		|| !ft_strcmp(shell->cmd[0], "UNSET"))
+		ft_unset(shell);
+	else
+		return (1);
+	return (0);
+}
 
 static int	builtin_func(t_shell *shell)
 {

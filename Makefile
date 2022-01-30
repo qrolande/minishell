@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+         #
+#    By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 15:51:21 by qrolande          #+#    #+#              #
-#    Updated: 2022/01/28 00:23:11 by akatlyn          ###   ########.fr        #
+#    Updated: 2022/01/30 06:49:39 by qrolande         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,12 @@ SRCS  		=	srcs/main.c \
 				functions/export_without_param.c \
 				functions/export_with_param.c \
 				functions/utils.c \
+				functions/unset.c \
 				functions/echo.c \
 				functions/exit.c \
 				functions/pwd.c \
-				functions/env.c
+				functions/env.c \
+				functions/cd.c
 						
 OBJS		=	${SRCS:.c=.o}
 
