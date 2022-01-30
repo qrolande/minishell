@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:36:09 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/30 06:55:26 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 07:47:45 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	builtin_func(t_shell *shell)
 		ft_exit(shell);
 	else if (!ft_strcmp(shell->cmd[0], "env") \
 		|| !ft_strcmp(shell->cmd[0], "ENV"))
-		ft_env(shell);
+		ft_env(shell, 1);
 	else if (!ft_strcmp(shell->cmd[0], "export") \
 		|| !ft_strcmp(shell->cmd[0], "EXPORT"))
 	{

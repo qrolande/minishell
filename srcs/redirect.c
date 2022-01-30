@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:01:25 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/24 22:09:32 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 07:43:19 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ static char	*destroying_red(char *tmp_str, char *str, int i)
 		str2 = ft_strdup(str + i);
 	else
 		str2 = ft_strdup("");
-	str3 = ft_strjoin_free(tmp_str, " ");
-	str1 = ft_strjoin_free(str3, str2);
+	str1 = ft_strjoin_free(tmp_str, str2);
 	free (str2);
 	return (str1);
 }
@@ -89,12 +88,12 @@ static char	*prepare_redir(t_shell *shell, char *str, int i, int flag)
 	while (str[i] && str[i] != ' ' && str[i] != '\t')
 		i++;
 	file = ft_substr(str, j, i - j);
-	file_prepare(file, shell, flag);
+	if (!g_ex_flag)
+		file_prepare(file, shell, flag);
 	while (str[i] == ' ')
 		i++;
 	if (!shell->error)
 		tmp_str = destroying_red(tmp_str, str, i);
-	tmp_str = prepare_cmd(tmp_str, 0);
 	free(str);
 	free(file);
 	return (tmp_str);
@@ -112,6 +111,9 @@ char	*redirect(t_shell *shell, char *str, int i)
 	else
 		flag = 3;
 	if (flag > 0)
+	{
 		str = prepare_redir(shell, str, i, flag);
+	}
+	str = prepare_cmd(str, 0);
 	return (str);
 }

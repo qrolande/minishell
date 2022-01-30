@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 13:37:06 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/30 01:40:33 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 07:45:22 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,12 @@ void	error_output(char *str)
 	ft_putstr_fd("minishell> export: `", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\': not a valid identifier\n", 2);
+}
+
+void	env_error_msg(t_shell *shell)
+{
+	printf("minishell> %s: %s\n", shell->cmd[0], \
+				"No such file or directory");
+	shell->error += 1;
+	g_ex_flag = 1;
 }

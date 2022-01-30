@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/30 06:47:38 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 07:47:35 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,11 @@ char	*gap(char *str, int *i);
 void	error_output(char *str);
 void	env_work(t_shell *shell);
 char	*slash(char *str, int *i);
-int		env_size(t_shell *shell, int i);
 char	*exsts(char *str, int *i);
+void	env_error_msg(t_shell *shell);
 void	checking_path(t_shell *shell);
 char	*prepare_cmd(char *str, int i);
+int		env_size(t_shell *shell, int i);
 void	check_quotes(char *str, int *i);
 void	fd_work(t_shell *shell, int flag);
 void	rl_replace_line(const char *a, int b);
@@ -111,10 +112,10 @@ void	ft_pwd(t_shell *shell);
 
 void	ft_export_with_param(t_shell *shell, int i, int j);
 void	ft_export_without_param(t_shell *shell, int i, int j);
+void	ft_env(t_shell	*shell, int fd);
 void	ft_echo(t_shell *shell, int i);
 void	ft_unset(t_shell	*shell);
 void	ft_exit(t_shell	*shell);
-void	ft_env(t_shell	*shell);
 void	ft_cd(t_shell	*shell);
 
 #endif

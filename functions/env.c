@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 21:19:57 by akatlyn           #+#    #+#             */
-/*   Updated: 2022/01/27 23:50:49 by akatlyn          ###   ########.fr       */
+/*   Updated: 2022/01/30 07:47:18 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../includes/minishell.h"
 
-void	ft_env(t_shell	*shell)
+void	ft_env(t_shell	*shell, int fd)
 {
 	t_structenv	*tmp;
-	int			fd;
 
-	fd = 1;
 	tmp = shell->env_mass;
 	if (shell->redir.r_num || shell->redir.x_num)
 		fd = shell->redir.r_fd;
@@ -25,13 +23,18 @@ void	ft_env(t_shell	*shell)
 		fd = shell->fd[shell->num_pipe][1];
 	while (tmp)
 	{
-		if (tmp->key && tmp->equality)
+		if (tmp->key && tmp->equality && shell->full_path)
 		{
 			ft_putstr_fd(tmp->key, fd);
 			write(fd, "=", 1);
 			if (tmp->value)
 				ft_putstr_fd(tmp->value, fd);
 			write(fd, "\n", 1);
+		}
+		else
+		{
+			env_error_msg(shell);
+			return ;
 		}
 		tmp = tmp->next;
 	}
