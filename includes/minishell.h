@@ -14,9 +14,6 @@
 # define MINISHELL_H
 
 # include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "../libft/libft.h"
 # include "signal.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -24,6 +21,12 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <string.h>
+# include "../libft/libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
+
+# define MAX 0	
+# define MIN 1
 
 int	g_ex_flag;
 
@@ -49,6 +52,7 @@ typedef struct s_structenv
 	char				*value;
 	struct s_structenv	*next;
 	int					flag;
+	int					equality;
 }				t_structenv;
 
 typedef struct s_shell
@@ -72,15 +76,18 @@ typedef struct s_shell
 	struct s_shell		*next;
 }				t_shell;
 
-//void	rl_replace_line();
+void	signals_first(void);
+void	signals_second(void);
 void	syntax(t_shell *shell);
 char	*gap(char *str, int *i);
+void	env_work(t_shell *shell);
 char	*slash(char *str, int *i);
 char	*exsts(char *str, int *i);
 void	checking_path(t_shell *shell);
 char	*prepare_cmd(char *str, int i);
 void	check_quotes(char *str, int *i);
 void	fd_work(t_shell *shell, int flag);
+void	rl_replace_line(const char *a, int b);
 void	env_parser(t_shell *shell, char	**env);
 void	pipe_work(t_shell *shell, int i, int j);
 void	begin(t_shell *shell, char **env, int i);
