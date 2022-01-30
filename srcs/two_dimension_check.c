@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 19:17:57 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/20 00:00:30 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 06:27:19 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,13 @@ char	*find_key_value(char *tmp_key, t_shell *shell)
 	while (tmp_env)
 	{
 		if (!ft_strncmp(tmp_key, tmp_env->key, res))
+		{
+			free(tmp_key);
 			return (tmp_env->value);
+		}
 		tmp_env = tmp_env->next;
 	}
+	free(tmp_key);
 	return ("");
 }
 

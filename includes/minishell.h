@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:08:07 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/28 00:23:26 by akatlyn          ###   ########.fr       */
+/*   Updated: 2022/01/30 06:36:25 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,10 @@ void	signals_first(void);
 void	signals_second(void);
 void	syntax(t_shell *shell);
 char	*gap(char *str, int *i);
+void	error_output(char *str);
 void	env_work(t_shell *shell);
 char	*slash(char *str, int *i);
+int		env_size(t_shell *shell, int i);
 char	*exsts(char *str, int *i);
 void	checking_path(t_shell *shell);
 char	*prepare_cmd(char *str, int i);
@@ -96,20 +98,21 @@ char	*tilde(char *str, int *i, t_shell *shell);
 char	*dollar(char *str, int *i, t_shell *shell);
 char	*finder(char *str, int *i, t_shell *shell);
 void	cleaning_company(t_shell *shell, int flag);
-char	*heredoc(t_shell *shell, char *str, int i);
 char	*redirect(t_shell *shell, char *str, int i);
 char	*double_gap(char *str, int *i, t_shell *shell);
 char	*find_key_value(char *tmp_key, t_shell *shell);
 char	**env_constructor(t_shell *shell, int i, int j);
-void	cmd_executor(char **env, t_shell *shell, int pid);
+char	*heredoc(t_shell *shell, char *str, int i, int j);
 void	cmd_parser(t_shell *shell, char *str, int i, int j);
+void	ft_lstadd_back_env(t_structenv **lst, t_structenv *new);
+void	cmd_executor(char **env, t_shell *shell, int pid, int res);
 char	**two_dimension_check(char	**arr, char *str, int *j, int i);
-
-// akatlyn
-
 void	ft_pwd(t_shell *shell);
-void	ft_exit(t_shell	*shell);
+
+void	ft_export_with_param(t_shell *shell, int i, int j);
+void	ft_export_without_param(t_shell *shell, int i, int j);
 void	ft_echo(t_shell *shell, int i);
+void	ft_exit(t_shell	*shell);
 void	ft_env(t_shell	*shell);
 
 #endif

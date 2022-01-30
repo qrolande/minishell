@@ -25,7 +25,7 @@ void	ft_env(t_shell	*shell)
 		fd = shell->fd[shell->num_pipe][1];
 	while (tmp)
 	{
-		if (tmp->key)
+		if (tmp->key && tmp->equality)
 		{
 			ft_putstr_fd(tmp->key, fd);
 			write(fd, "=", 1);

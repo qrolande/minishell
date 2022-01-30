@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:46:21 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/24 21:24:11 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 06:36:37 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,5 @@ void	pipe_executor(char **env, t_shell *shell)
 	tmp_pipe = prepare_cmd(tmp_pipe, 0);
 	cmd_parser(shell, tmp_pipe, -1, 0);
 	shell->num_pipe += 1;
-	cmd_executor(env, shell, 0);
+	cmd_executor(env, shell, 0, 0);
 }

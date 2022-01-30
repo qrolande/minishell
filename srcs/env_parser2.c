@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-static int	env_size(t_shell *shell, int i)
+int	env_size(t_shell *shell, int i)
 {
 	t_structenv	*tmp;
 
