@@ -79,8 +79,7 @@ static char	*prepare_redir(t_shell *shell, char *str, int i, int flag)
 	char	*file;
 	char	*tmp_str;
 
-	j = 0;
-	if (i)
+	if (i > 0)
 		tmp_str = ft_substr(str, 0, i - 1);
 	else
 		tmp_str = ft_strdup("");
@@ -108,11 +107,11 @@ char	*redirect(t_shell *shell, char *str, int i)
 	flag = 0;
 	if (str[i] == '<')
 		flag = 1;
-	if (str[i] == '>' && (!str[i + 1] || str[i + 1] != '>'))
+	else if (str[i] == '>' && (!str[i + 1] || str[i + 1] != '>'))
 		flag = 2;
 	else
 		flag = 3;
-	if (flag)
+	if (flag > 0)
 		str = prepare_redir(shell, str, i, flag);
 	return (str);
 }

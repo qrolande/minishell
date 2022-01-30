@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:01:47 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/25 21:51:02 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 06:30:42 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ static char	*red_her_parser(t_shell *shell, char *str, int i)
 			while (str[i] && (str[i] != '\"' || str[i] != '\''))
 				i++;
 		}
-		if ((str[i] == '<' && str[i + 1] != '<') || str[i] == '>')
-		{
-			str = redirect(shell, str, i);
-			i = -1;
-		}
 		if (str[i] == '<' && str[i + 1] == '<')
 		{
-			str = heredoc(shell, str, i);
+			str = heredoc(shell, str, i, 0);
+			i = -1;
+		}
+		else if (str[i] == '<' || str[i] == '>')
+		{
+			str = redirect(shell, str, i);
 			i = -1;
 		}
 		i++;
@@ -93,7 +93,7 @@ void	cmd_parser(t_shell *shell, char *str, int i, int j)
 
 	res = 0;
 	str = red_her_parser(shell, str, 0);
-	while (str[++i] && shell->error == 0)
+	while (str[i] && shell->error == 0)
 	{
 		str = types(str, &i, shell);
 		if (str[i] == ' ')
@@ -102,6 +102,7 @@ void	cmd_parser(t_shell *shell, char *str, int i, int j)
 				ft_substr(str, res, i - res), &j, 0);
 			res = i + 1;
 		}
+		i++;
 	}
 	if (res != ft_strlen(str) && shell->error == 0)
 	{

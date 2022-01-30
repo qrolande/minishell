@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 19:32:03 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/24 21:57:43 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 06:30:19 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,24 @@ static char	*heredoc_work(char *str, int i)
 	str1 = ft_strjoin_free(str1, str2);
 	free(str2);
 	free(str);
+	str1 = prepare_cmd(str1, 0);
 	return (str1);
 }
 
-char	*heredoc(t_shell *shell, char *str, int i)
+int	check_ext(char *str)
+{
+	if (str[0] == '\0')
+	{
+		printf("minishell> syntax error near unexpected token `newline'\n");
+		return (1);
+	}
+	return (0);
+}
+
+char	*heredoc(t_shell *shell, char *str, int i, int j)
 {
 	char	*str1;
 	char	*ext;
-	int		j;
 
 	str1 = ft_strdup(" ");
 	shell->her.if_heredoc = 1;
@@ -78,15 +88,17 @@ char	*heredoc(t_shell *shell, char *str, int i)
 	while (str[i] && str[i] != ' ' && str[j] != '\t')
 		i++;
 	ext = ft_substr(str, j, i - j);
-	while (str1 && ft_strcmp(str1, ext))
+	if (!check_ext(ext))
 	{
+		while (str1 && ft_strcmp(str1, ext))
+		{
+			free(str1);
+			str1 = heredoc2(shell, ext, -1);
+		}
 		free(str1);
-		str1 = heredoc2(shell, ext, -1);
+		close(shell->her.fd[1]);
+		str1 = heredoc_work(str, 0);
 	}
-	free(str1);
-	close(shell->her.fd[1]);
-	str1 = heredoc_work(str, 0);
-	str1 = prepare_cmd(str1, 0);
 	free(ext);
 	return (str1);
 }

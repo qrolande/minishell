@@ -27,6 +27,9 @@ SRCS  		=	srcs/main.c \
 				srcs/cmd_executor.c \
 				srcs/cleaning_company.c \
 				srcs/two_dimension_check.c \
+				functions/export_without_param.c \
+				functions/export_with_param.c \
+				functions/utils.c \
 				functions/echo.c \
 				functions/exit.c \
 				functions/pwd.c \

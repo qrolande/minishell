@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_executor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akatlyn <akatlyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:36:09 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/27 21:31:02 by akatlyn          ###   ########.fr       */
+/*   Updated: 2022/01/30 06:38:34 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,18 @@ static int	builtin_func(t_shell *shell)
 	else if (!ft_strcmp(shell->cmd[0], "env") \
 		|| !ft_strcmp(shell->cmd[0], "ENV"))
 		ft_env(shell);
-	else
+	else if (!ft_strcmp(shell->cmd[0], "export") \
+		|| !ft_strcmp(shell->cmd[0], "EXPORT"))
+	{
+		if (shell->cmd[1])
+		{
+			ft_export_with_param(shell, 0, 0);
+		}
+		else
+			ft_export_without_param(shell, 1, 0);
+	}
+	else if (builtin_func_two(shell))
 		return (1);
-	// if (!ft_strcmp(shell->cmd[0], "unset"))
-	// 	ft_unset();
-	// if (!ft_strcmp(shell->cmd[0], "env"))
-	// 	ft_unset();
-	// if (!ft_strcmp(shell->cmd[0], "exit"))
-	// 	ft_unset();
 	return (0);
 }
 
@@ -61,14 +65,14 @@ static void	other_commands(t_shell *shell)
 	exit(127);
 }
 
-void	cmd_executor(char **env, t_shell *shell, int pid)
+void	cmd_executor(char **env, t_shell *shell, int pid, int res)
 {
 	int	i;
-	int	res;
 
 	checking_path(shell);
 	fd_work(shell, 0);
-	res = builtin_func(shell);
+	if (shell->cmd != NULL && ft_strcmp(shell->cmd[0], " "))
+		res = builtin_func(shell);
 	if (res)
 	{
 		pid = fork();

@@ -6,7 +6,7 @@
 /*   By: qrolande <qrolande@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:13:11 by qrolande          #+#    #+#             */
-/*   Updated: 2022/01/27 21:13:40 by qrolande         ###   ########.fr       */
+/*   Updated: 2022/01/30 06:36:02 by qrolande         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,11 @@ void	begin(t_shell *shell, char **env, int i)
 			shell->cmd = NULL;
 			break ;
 		}
-		cmd_parser(shell, shell->splitted_cmd[i], -1, 0);
-		cmd_executor(env, shell, 0);
+		cmd_parser(shell, shell->splitted_cmd[i], 0, 0);
+		if (!shell->error)
+			cmd_executor(env, shell, 0, 0);
 		cleaning_company(shell, 1);
-		shell->num_cmd--;
+		shell->num_cmd -= 1;
 		i++;
 	}
 	cleaning_company(shell, 3);
